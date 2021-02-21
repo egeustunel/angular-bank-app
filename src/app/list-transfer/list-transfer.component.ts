@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {BankAccountsService} from '../accounts/bank-accounts.service';
 
 @Component({
   selector: 'app-list-transfer',
@@ -7,10 +8,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./list-transfer.component.css']
 })
 export class ListTransferComponent implements OnInit {
+  transactions: any;
+  constructor(private router: Router,
+              private accountService: BankAccountsService) { }
 
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
+  async ngOnInit(): Promise<any> {
+    this.transactions = await this.accountService.getTransactions();
+    console.log(this.transactions);
   }
 
   makeTransaction(type): any {

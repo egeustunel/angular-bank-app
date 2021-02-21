@@ -20,7 +20,7 @@ export class AccountService {
     this.db.version(1).stores({
       users: '++id, name, password',
       accounts: '++id, user_id, name, balance, currency, accountNumber',
-      transactions: '++id, sender_id, receiver_id, amount, description',
+      transactions: '++id, sender_id, receiver_id, amount, description, type, user_id',
     });
   }
 

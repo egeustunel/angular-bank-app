@@ -21,7 +21,7 @@ export class CurrencyConverterService {
     });
   }
 
-  saveTransaction(senderId, receiverId, senderAccountNumber, receiverAccountNumber, amount, description): any {
+  saveTransaction(senderId, receiverId, senderAccountNumber, receiverAccountNumber, amount, description, type): any {
     return this.accountService.db.transactions.add({
       sender_id: senderId,
       receiver_id: receiverId,
@@ -29,6 +29,8 @@ export class CurrencyConverterService {
       receiver_accountNumber: receiverAccountNumber,
       amount: amount,
       description: description,
+      type: type,
+      user_id: this.accountService.userValue.id
     });
   }
   makeTransaction(senderId, receiverID, senderNewBalance, receiverNewBalance ): any {

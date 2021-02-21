@@ -7,6 +7,7 @@ import {AccountService} from '../sign-in/account.service';
 })
 export class BankAccountsService {
   accounts: any;
+  transactions: any;
   constructor(private accountService: AccountService) {
 
   }
@@ -16,6 +17,13 @@ export class BankAccountsService {
       user_id: this.accountService.userValue.id
     }).toArray();
     return this.accounts;
+  }
+
+  async getTransactions(): Promise<any> {
+    this.transactions = await this.accountService.db.transactions.where({
+      user_id: this.accountService.userValue.id
+    }).toArray();
+    return this.transactions;
   }
 
   async createAccount(name, balance, currency): Promise<any> {

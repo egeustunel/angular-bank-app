@@ -71,9 +71,10 @@ export class MakeTransferComponent implements OnInit {
         .saveTransaction(this.form.value.source.id,
           this.form.value.target.id,
           this.form.value.source.accountNumber,
-          this.form.value.target.accountNumber,
+          this.type === 'virman' ? this.form.value.target.name : this.form.value.target.accountNumber,
           this.form.value.amount,
-          this.form.value.description);
+          this.form.value.description,
+          this.type);
       this.router.navigateByUrl('transactions');
     }
   }
