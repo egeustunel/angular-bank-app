@@ -11,6 +11,9 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountDetailCardComponent } from './account-detail-card/account-detail-card.component';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
+import { MakeTransferComponent } from './make-transfer/make-transfer.component';
+import { ListTransferComponent } from './list-transfer/list-transfer.component';
+import { MyCurrencyPipe } from './pipes/my-currency.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
     AccountsComponent,
     AccountDetailCardComponent,
     AddAccountComponent,
-    AccountDetailComponent
+    AccountDetailComponent,
+    MakeTransferComponent,
+    ListTransferComponent,
+    MyCurrencyPipe
   ],
   imports: [
     BrowserModule,

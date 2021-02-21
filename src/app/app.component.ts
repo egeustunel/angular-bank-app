@@ -14,7 +14,6 @@ export class AppComponent {
   constructor(private accountService: AccountService) {
     this.accountService.user.subscribe((data) => {
       if (data) {
-        console.log(data);
         this.username = data.name;
       }
     });

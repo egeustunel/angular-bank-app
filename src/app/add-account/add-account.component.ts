@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BankAccountsService} from '../accounts/bank-accounts.service';
@@ -13,6 +13,8 @@ export class AddAccountComponent implements OnInit {
   loading = false;
   submitted = false;
   isUserExists: boolean;
+  accounts: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -22,15 +24,18 @@ export class AddAccountComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<any> {
     this.form = this.formBuilder.group({
       accountName: ['', Validators.required],
       balance: ['', Validators.required],
       currency: ['', Validators.required]
     });
+    this.accounts = await this.accountService.getBankAccounts();
   }
 
-  get f() { return this.form.controls; }
+  get f() {
+    return this.form.controls;
+  }
 
   onSubmit(): void {
     this.submitted = true;

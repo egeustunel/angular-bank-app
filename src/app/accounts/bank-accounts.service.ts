@@ -6,15 +6,16 @@ import {AccountService} from '../sign-in/account.service';
   providedIn: 'root'
 })
 export class BankAccountsService {
-
+  accounts: any;
   constructor(private accountService: AccountService) {
 
   }
 
   async getBankAccounts(): Promise<any> {
-    return await this.accountService.db.accounts.where({
+    this.accounts = await this.accountService.db.accounts.where({
       user_id: this.accountService.userValue.id
     }).toArray();
+    return this.accounts;
   }
 
   async createAccount(name, balance, currency): Promise<any> {

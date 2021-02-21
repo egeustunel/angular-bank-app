@@ -1,10 +1,10 @@
-<div class="card mr-2">
+<div class="card mr-2 mb-4">
   <div class="card-body card-default">
     <div class="card-header">
       <p>{{account.name}}</p>
     </div>
     <div class="card-body">
-      <p>{{account.balance}}{{account.currency}}</p>
+      <p>{{account.balance | MyCurrencyPipe:account.currency}}</p>
     </div>
   </div>
 </div>

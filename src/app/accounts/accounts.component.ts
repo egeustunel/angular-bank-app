@@ -14,7 +14,6 @@ export class AccountsComponent implements OnInit {
 
   async ngOnInit(): Promise<any> {
     this.accounts = await this.bankAccountService.getBankAccounts();
-    console.log(this.accounts);
   }
 
   addAccount(): void {

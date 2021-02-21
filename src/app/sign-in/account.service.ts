@@ -19,7 +19,8 @@ export class AccountService {
     // Declare tables, IDs and indexes
     this.db.version(1).stores({
       users: '++id, name, password',
-      accounts: '++id, user_id, name, balance, currency, accountNumber'
+      accounts: '++id, user_id, name, balance, currency, accountNumber',
+      transactions: '++id, sender_id, receiver_id, amount, description',
     });
   }
 
@@ -35,7 +36,6 @@ export class AccountService {
     return this.User.asObservable().pipe(
       map((user) => {
         if (user) {
-          console.log(!!user.name);
           return !!user.name;
         } else {
           return false;

@@ -1,0 +1,58 @@
+<div class="align-middle col-8 offset-2">
+  <div class="card mt-5">
+    <h4 class="card-header">Para Transfer Edin</h4>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="source">Kaynak Hesap</label>
+          <div class="form-check" *ngFor="let account of accounts">
+            <input class="form-check-input" type="radio" checked [value]="account" formControlName="source" id="source">
+            <label class="form-check-label" for="source">
+              {{account.name}} / {{account.balance | MyCurrencyPipe:account.currency}}
+            </label>
+          </div>
+          <div *ngIf="submitted && f.source.errors" class="invalid-feedback">
+            <div *ngIf="f.source.errors.required">Hesap adı gereklidir</div>
+          </div>
+        </div>
+        <div *ngIf="type === 'virman'" class="form-group">
+          <label for="target">Hedef Hesap</label>
+          <div class="form-check" *ngFor="let account of accounts">
+            <input class="form-check-input" type="radio" checked [value]="account" formControlName="target" id="target">
+            <label class="form-check-label" for="target">
+              {{account.name}} / {{account.balance | MyCurrencyPipe:account.currency}}
+            </label>
+          </div>
+          <div *ngIf="submitted && f.target.errors" class="invalid-feedback">
+            <div *ngIf="f.target.errors.required">Hesap adı gereklidir</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="amount">Tutar</label>
+          <input type="number" formControlName="amount" id="amount" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.amount.errors }"/>
+          <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+            <div *ngIf="f.amount.errors.required">Bakiye gereklidir</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Açıklama</label>
+          <textarea type="number" formControlName="description" id="description" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.amount.errors }"></textarea>
+          <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">Açıklama gereklidir</div>
+          </div>
+        </div>
+        <div *ngIf="isUserExists === false" class="alert alert-danger" role="alert">
+          Kullanıcı adı ya da şifre hatalı.
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary btn-block">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Onayla
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
