@@ -1,0 +1,39 @@
+<div class="align-middle col-6 offset-3">
+  <div class="card mt-5">
+    <h4 class="card-header">Kayıt Ol</h4>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Kullanıcı Adı</label>
+          <input type="text" formControlName="username" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Kullanıcı adı gerekli</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Şifre</label>
+          <input type="password" formControlName="password" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Şifre gerekli</div>
+            <div *ngIf="f.password.errors.minlength">Şifre en az 6 karakterden oluşmalıdır.</div>
+          </div>
+        </div>
+        <div *ngIf="isUserCreated" class="alert alert-success" role="alert">
+          Kullanıcı oluşturma başarılı.
+        </div>
+        <div *ngIf="!isUsernameAvailable" class="alert alert-danger" role="alert">
+          Bu kullanıcı adı alınmış.
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary btn-block">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Kayıt
+          </button>
+          <a routerLink="/sign-in" class="btn btn-link btn-block">Oturum Aç</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

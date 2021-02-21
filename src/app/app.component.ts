@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+import {AccountService} from './sign-in/account.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cubicl';
+  username: string;
+
+  constructor(private accountService: AccountService) {
+    this.accountService.user.subscribe((data) => {
+      if (data) {
+        console.log(data);
+        this.username = data.name;
+      }
+    });
+  }
+
+  logout(): void {
+    this.username = null;
+    this.accountService.logout();
+  }
 }
