@@ -18,7 +18,6 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let user;
     this.accountService.userIsAuthenticated.subscribe(data => {
-      console.log(data);
       if (!data) {
         this.accountService.autoLogin().then(() => {
           if (this.accountService.userIsAuthenticated) {

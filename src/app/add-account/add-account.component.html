@@ -1,0 +1,58 @@
+<div class="align-middle col-6 offset-3">
+  <div class="card mt-5">
+    <h4 class="card-header">Yeni Bir Hesap Oluşturun</h4>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="accountName">Hesap Adı</label>
+          <input type="text" formControlName="accountName" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.accountName.errors }"/>
+          <div *ngIf="submitted && f.accountName.errors" class="invalid-feedback">
+            <div *ngIf="f.accountName.errors.required">Hesap adı gereklidir</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="balance">Bakiye</label>
+          <input type="balance" formControlName="balance" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.balance.errors }"/>
+          <div *ngIf="submitted && f.balance.errors" class="invalid-feedback">
+            <div *ngIf="f.balance.errors.required">Bakiye gereklidir</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="currency">Para Birimi</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" checked value="tl" formControlName="currency" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Türk Lirası
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" value="dolar" formControlName="currency" id="flexRadioDefault2">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Dolar
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" value="euro" formControlName="currency" id="flexRadioDefault3">
+            <label class="form-check-label" for="flexRadioDefault3">
+              Euro
+            </label>
+          </div>
+          <div *ngIf="submitted && f.currency.errors" class="invalid-feedback">
+            <div *ngIf="f.currency.errors.required">Para birimini belirtmelisiniz.</div>
+          </div>
+        </div>
+        <div *ngIf="isUserExists === false" class="alert alert-danger" role="alert">
+          Kullanıcı adı ya da şifre hatalı.
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary btn-block">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Hesabı Oluştur
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -7,12 +7,20 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import { AccountsComponent } from './accounts/accounts.component';
+import { AccountDetailCardComponent } from './account-detail-card/account-detail-card.component';
+import { AddAccountComponent } from './add-account/add-account.component';
+import { AccountDetailComponent } from './account-detail/account-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    AccountsComponent,
+    AccountDetailCardComponent,
+    AddAccountComponent,
+    AccountDetailComponent
   ],
   imports: [
     BrowserModule,

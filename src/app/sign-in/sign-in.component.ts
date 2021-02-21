@@ -23,7 +23,7 @@ export class SignInComponent implements OnInit {
     private accountService: AccountService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]

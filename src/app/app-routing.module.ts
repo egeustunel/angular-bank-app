@@ -4,12 +4,15 @@ import {RouterModule, Routes} from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {AuthGuard} from './sign-in/auth.guard';
+import {AccountsComponent} from './accounts/accounts.component';
+import {AddAccountComponent} from './add-account/add-account.component';
+
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent},
   { path: 'sign-up', component: SignUpComponent },
-
-  // otherwise redirect to home
-  { path: '**', redirectTo: '', canActivate: [AuthGuard]  }
+  { path: '', component: AccountsComponent, canActivate: [AuthGuard]},
+  { path: 'accounts', component: AccountsComponent, canActivate: [AuthGuard]},
+  { path: 'accounts/add-account', component: AddAccountComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

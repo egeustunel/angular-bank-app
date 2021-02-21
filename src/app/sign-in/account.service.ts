@@ -4,6 +4,7 @@ import Dexie from 'dexie';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {BankAccountsService} from '../accounts/bank-accounts.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,17 @@ export class AccountService {
     this.db = new Dexie('MyDatabase');
     // Declare tables, IDs and indexes
     this.db.version(1).stores({
-      users: 'name, password'
+      users: '++id, name, password',
+      accounts: '++id, user_id, name, balance, currency, accountNumber'
     });
   }
 
   get user(): Observable<any> {
     return this.User.asObservable();
+  }
+
+  get userValue(): any {
+    return this.User.value;
   }
 
   get userIsAuthenticated(): Observable<any> {
@@ -61,6 +67,7 @@ export class AccountService {
       localStorage.setItem('user', JSON.stringify(user));
       this.User.next(user);
     }
+
     return user;
   }
 
